@@ -41,6 +41,47 @@
 				</div>
 			</div>
 
+			<div id="call-to-action-modal" class="call-to-action-modal">
+				<!-- Modal content -->
+				<div class="call-to-action-modal-content">
+					<div class="modal-body">
+						<div class="call-to-action-modal-title">
+							Contactez-moi <br />
+							<span id="call-to-action-modal-photographer-name"></span>
+						</div>
+						<span class="close1">&times;</span>
+						<form id="form" name="form" action="" method="get">
+							<div class="formData">
+								<label for="first">Prénom</label><br />
+								<input class="text-control" type="text" id="first" name="first" /><br />
+							</div>
+							<div id="error-first" class="error-form">Veuillez entrer 2 caractères ou plus pour le champ du Prénom.</div>
+							<div class="formData">
+								<label for="last">Nom</label><br />
+								<input class="text-control" type="text" id="last" name="last" /><br />
+							</div>
+							<div id="error-last" class="error-form">Veuillez entrer 2 caractères ou plus pour le champ du Nom.</div>
+							<div class="formData">
+								<label for="email">Email</label><br />
+								<input class="text-control" type="email" id="email" name="email" /><br />
+							</div>
+							<div id="error-email" class="error-form">Vous devez entrer votre adresse email.</div>
+							<div class="formData">
+								<label for="message">Votre message</label><br />
+								<textarea class="text-control text-control-message" type="text" id="message" name="message" rows="5"></textarea>
+							</div>
+							<div id="error-message" class="error-form">Veuillez entrer votre message (minimum 20 caractères, pas de caractères spéciaux)</div>
+							<input class="btn-submit button" type="submit" value="Envoyer" />
+						</form>
+
+						<div id="confirmation">
+							<h1>Merci ! Votre message a été envoyé.</h1>
+							<button id="confirmation-btn-close" class="btn-close">Fermer</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div id="photographer-all-medias-container"></div>
 		</main>
 		<script src="./assets/js/main.js"></script>

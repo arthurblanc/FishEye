@@ -9,6 +9,7 @@
 /* == HEADER  */
 /* == HOME  */
 /* == PHOTOGRAPHER  */
+/* == FORM  */
 
 /* ---------------------------------------- */
 /* ==          VARIABLES             */
@@ -569,6 +570,10 @@ article {
 	}
 }
 
+/* ---------------------------------------- */
+/* ==              FORM                   */
+/*---------------------------------------- */
+
 #call-to-action-button {
 	position: fixed;
 	left: 0;
@@ -603,4 +608,132 @@ article {
 		padding: 1.3125rem 0.625rem;
 		margin: 1rem 0;
 	}
+}
+
+.call-to-action {
+	&-modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(255, 255, 255, 0.5);
+		@include tablet-breakpoint {
+			height: auto;
+		}
+		&-content {
+			background: #db8876;
+			height: 100%;
+
+			overflow-y: auto;
+			@include tablet-breakpoint {
+				margin: auto;
+				margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+				transform: translateY(-50%);
+				width: 100%;
+				max-height: 97vh;
+				max-width: 35rem;
+				background: #db8876;
+				border-radius: 0.3125rem;
+				position: relative;
+				color: #312e2e;
+			}
+		}
+		&-title {
+			font-size: 2.3em;
+			margin-bottom: 1.25rem;
+		}
+	}
+}
+
+.modal-body {
+	padding: 0.9375rem 2.1875rem 2.5rem;
+	height: inherit;
+	box-sizing: border-box;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 84%;
+}
+
+label {
+	font-size: 2rem;
+	font-weight: normal;
+}
+.text-control {
+	margin: 0;
+	padding: 0.5rem;
+	width: 100%;
+	font-size: 1.5rem;
+	border: none;
+	box-sizing: border-box;
+	border-radius: 0.3125rem;
+}
+
+textarea {
+	margin: 0;
+	padding: 0.5rem;
+	width: 100%;
+	font-size: 1.5rem;
+	border: none;
+	box-sizing: border-box;
+	border-radius: 0.3125rem;
+}
+
+.close1 {
+	color: #fff;
+	font-size: 3.5rem;
+	position: absolute;
+	right: 1.5rem;
+	top: -0.5rem;
+	cursor: pointer;
+	@include tablet-breakpoint {
+		font-size: 5.3125rem;
+		top: -1rem;
+		right: 2.1875rem;
+	}
+}
+
+.btn-submit {
+	background: #fe142f;
+	display: block;
+	margin-top: 1.5625rem;
+	border-radius: 0.3125rem;
+	font-size: 1.2rem;
+	font-weight: 700;
+	padding: 1.4375rem 3.125rem;
+	color: #fff;
+	cursor: pointer;
+	border: 0;
+	@include tablet-breakpoint {
+		width: fit-content;
+	}
+}
+
+.error-form {
+	color: red;
+	font-size: 0.8rem;
+	margin-top: 0.2rem;
+}
+
+#error-first,
+#error-last,
+#error-email,
+#error-message {
+	display: none;
+}
+
+#confirmation {
+	margin: auto;
+	display: none;
+}
+
+#confirmation h1 {
+	text-align: center;
+	font-size: 2rem;
+	padding: 18rem 0;
 }
