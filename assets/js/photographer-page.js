@@ -98,10 +98,17 @@ async function render() {
 		const photographerMediasTextContainer = newElement("div", photographerMediasContainer, { class: "photographer-medias-text-container" });
 		const photographerMediasTitle = newElement("div", photographerMediasTextContainer, { class: "photographer-medias-title" }, mediasOfThisPhotograph[i].title);
 		const photographerMediasLikesContainer = newElement("div", photographerMediasTextContainer, {
+			id: "likes-container-" + mediasOfThisPhotograph[i].id,
 			class: "photographer-medias-likes-container",
+			onclick: "like(" + mediasOfThisPhotograph[i].id + ", " + 1 + ")",
 		});
-		const photographerMediasLikesCount = newElement("div", photographerMediasLikesContainer, { class: "photographer-medias-likes-count" }, mediasOfThisPhotograph[i].likes.toString());
-		const photographerMediasLikesLogo = newElement("img", photographerMediasLikesContainer, { src: "./assets/img/likes.svg", alt: "likes", class: "photographer-medias-likes-logo" });
+		const photographerMediasLikesCount = newElement(
+			"div",
+			photographerMediasLikesContainer,
+			{ id: "like-" + mediasOfThisPhotograph[i].id, class: "photographer-medias-likes-count" },
+			mediasOfThisPhotograph[i].likes.toString()
+		);
+		const photographerMediasLikesLogo = newElement("img", photographerMediasLikesContainer, { src: "assets/img/likes.svg", alt: "likes", class: "photographer-medias-likes-logo" });
 	}
 	const photographerLikes = newValue("about-photographer-likes-count", {}, allLikes);
 }
@@ -175,5 +182,22 @@ form.addEventListener("submit", (e) => {
 		form.style.display = "none";
 	}
 });
+
+// likes
+const like = async (id, number) => {
+	let mediaLikes = parseInt($("#like-" + id).text());
+	mediaLikes = mediaLikes + number;
+	$("#like-" + id).text(mediaLikes);
+
+	let totalLikes = parseInt($("#about-photographer-likes-count").text());
+	totalLikes = totalLikes + number;
+	$("#about-photographer-likes-count").text(totalLikes);
+
+	if (number === 1) {
+		$("#likes-container-" + id).attr("onclick", "like(" + id + ", " + -1 + ")");
+	} else {
+		$("#likes-container-" + id).attr("onclick", "like(" + id + ", " + 1 + ")");
+	}
+};
 
 /* ↑ INDEX ↑ */
