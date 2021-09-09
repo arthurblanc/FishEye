@@ -12,21 +12,23 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 	</head>
 
 	<body>
 		<header>
 			<a href="./"><img alt="Fisheye Home page" src="./assets/img/logo.svg" class="logo" /></a>
 			<nav aria-label="photographer categories">
-				<ul>
-					<li class="nav-tags tag">#Portrait</li>
-					<li class="nav-tags tag">#Art</li>
-					<li class="nav-tags tag">#Fashion</li>
-					<li class="nav-tags tag">#Architecture</li>
-					<li class="nav-tags tag">#Travel</li>
-					<li class="nav-tags tag">#Sport</li>
-					<li class="nav-tags tag">#Animals</li>
-					<li class="nav-tags tag">#Events</li>
+				<ul class="filters">
+					<li class="nav-tags tag btn btn-portrait" datafilter=".portrait" onclick="checkTag('portrait')">#Portrait</li>
+					<li class="nav-tags tag btn btn-art" datafilter=".art" onclick="checkTag('art')">#Art</li>
+					<li class="nav-tags tag btn btn-fashion" datafilter=".fashion" onclick="checkTag('fashion')">#Fashion</li>
+					<li class="nav-tags tag btn btn-architecture" datafilter=".architecture" onclick="checkTag('architecture')">#Architecture</li>
+					<li class="nav-tags tag btn btn-travel" datafilter=".travel" onclick="checkTag('travel')">#Travel</li>
+					<li class="nav-tags tag btn btn-sport" datafilter=".sport" onclick="checkTag('sport')">#Sport</li>
+					<li class="nav-tags tag btn btn-animals" datafilter=".animals" onclick="checkTag('animals')">#Animals</li>
+					<li class="nav-tags tag btn btn-events" datafilter=".events" onclick="checkTag('events')">#Events</li>
 				</ul>
 			</nav>
 			<div id="to-content-btn" class="to-content-btn">
@@ -35,7 +37,7 @@
 		</header>
 		<main id="main">
 			<h1 class="our-photographer">Nos photographes</h1>
-			<section id="photographer-list"></section>
+			<section id="photographer-list" class="grid"></section>
 		</main>
 		<script src="./assets/js/main.js"></script>
 		<script src="./assets/js/index.js"></script>

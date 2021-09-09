@@ -217,6 +217,12 @@ nav {
 	}
 }
 
+.btn.is-checked {
+	background-color: #901c1c !important;
+	color: #fff !important;
+	border: 0.03125rem solid #901c1c !important;
+}
+
 .to-content {
 	&-btn {
 		display: none;
