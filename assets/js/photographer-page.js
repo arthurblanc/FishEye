@@ -65,7 +65,12 @@ async function render() {
 	const photographerTagsContainer = document.getElementById("about-photographer-tags-container");
 	const photographerTagsContainerList = newElement("ul", photographerTagsContainer, { class: "about-photographer-tags-container" });
 	for (let item in photographer.tags) {
-		const photographerTags = newElement("li", photographerTagsContainerList, { class: "about-photographer-tags tag " }, "#" + photographer.tags[item]);
+		const photographerTags = newElement(
+			"li",
+			photographerTagsContainerList,
+			{ class: "about-photographer-tags tag btn" + " btn-" + photographer.tags[item], onclick: "checkTag('" + photographer.tags[item] + "')", datafilter: "." + photographer.tags[item] },
+			"#" + photographer.tags[item]
+		);
 	}
 	const callToActionModalPhotographerName = newValue("call-to-action-modal-photographer-name", {}, photographer.name);
 	const photographerPrice = newValue("about-photographer-price", {}, photographer.price + "€ / jour");
@@ -75,7 +80,8 @@ async function render() {
 		allLikes += mediasOfThisPhotograph[i].likes;
 		// Render galery
 		const photographerAllMediasContainer = document.getElementById("photographer-all-medias-container");
-		const photographerMediasContainer = newElement("div", photographerAllMediasContainer, { class: "photographer-medias-container " });
+		const photographerMediasContainer = newElement("div", photographerAllMediasContainer, { class: "photographer-medias-container itemSelector2" });
+		photographerMediasContainer.classList.add(mediasOfThisPhotograph[i].tags[0]);
 		const photographerImgContainer = newElement("div", photographerMediasContainer, { class: "photographer-img-container" });
 
 		if (mediasOfThisPhotograph[i].image != null) {
@@ -111,6 +117,7 @@ async function render() {
 		const photographerMediasLikesLogo = newElement("img", photographerMediasLikesContainer, { src: "assets/img/likes.svg", alt: "likes", class: "photographer-medias-likes-logo" });
 	}
 	const photographerLikes = newValue("about-photographer-likes-count", {}, allLikes);
+	filter();
 }
 render();
 
@@ -197,6 +204,61 @@ const like = async (id, number) => {
 		$("#likes-container-" + id).attr("onclick", "like(" + id + ", " + -1 + ")");
 	} else {
 		$("#likes-container-" + id).attr("onclick", "like(" + id + ", " + 1 + ")");
+	}
+};
+
+// Filters
+let filters = [];
+const filter = async () => {
+	let $grid = $(".grid").isotope({
+		itemSelector: ".itemSelector2",
+		layoutMode: "fitRows",
+	});
+
+	// change is-checked class on buttons
+	$(".filters").on("click", "li", function (event) {
+		let $target = $(event.currentTarget);
+		let isChecked = $target.hasClass("is-checked");
+		let filter = $target.attr("datafilter");
+		if (isChecked) {
+			addFilter(filter);
+		} else {
+			removeFilter(filter);
+		}
+		// filter isotope
+		// group filters together, inclusive
+		$grid.isotope({ filter: filters.join(",") });
+	});
+
+	function addFilter(filter) {
+		if (filters.indexOf(filter) == -1) {
+			filters.push(filter);
+		}
+	}
+
+	function removeFilter(filter) {
+		let index = filters.indexOf(filter);
+		if (index != -1) {
+			filters.splice(index, 1);
+		}
+	}
+
+	// change is-checked class on buttons
+	$(".button-group").each(function (i, buttonGroup) {
+		let $buttonGroup = $(buttonGroup);
+		$buttonGroup.on("click", "button", function () {
+			$buttonGroup.find(".is-checked").removeClass("is-checked");
+			$(this).addClass("is-checked");
+		});
+	});
+};
+
+const checkTag = (btn) => {
+	let isChecked = $(".btn-" + btn).hasClass("is-checked");
+	if (isChecked) {
+		$(".btn-" + btn).removeClass("is-checked");
+	} else {
+		$(".btn-" + btn).addClass("is-checked");
 	}
 };
 
