@@ -103,6 +103,7 @@ async function render() {
 
 		const photographerMediasTextContainer = newElement("div", photographerMediasContainer, { class: "photographer-medias-text-container" });
 		const photographerMediasTitle = newElement("div", photographerMediasTextContainer, { class: "photographer-medias-title" }, mediasOfThisPhotograph[i].title);
+		const photographerMediasDate = newElement("div", photographerMediasTextContainer, { class: "photographer-medias-date hide" }, mediasOfThisPhotograph[i].date);
 		const photographerMediasLikesContainer = newElement("div", photographerMediasTextContainer, {
 			id: "likes-container-" + mediasOfThisPhotograph[i].id,
 			class: "photographer-medias-likes-container",
@@ -213,6 +214,17 @@ const filter = async () => {
 	let $grid = $(".grid").isotope({
 		itemSelector: ".itemSelector2",
 		layoutMode: "fitRows",
+		sortBy: "popularity",
+		getSortData: {
+			popularity: ".photographer-medias-likes-count parseInt",
+			date: ".photographer-medias-date",
+			title: ".photographer-medias-title",
+		},
+		sortAscending: {
+			popularity: false,
+			date: false,
+			title: true,
+		},
 	});
 
 	// change is-checked class on buttons
@@ -243,6 +255,11 @@ const filter = async () => {
 		}
 	}
 
+	$(".sort-by-button-group").on("click", "a", function () {
+		let sortValue = $(this).attr("data-sort-value");
+		$grid.isotope({ sortBy: sortValue });
+	});
+
 	// change is-checked class on buttons
 	$(".button-group").each(function (i, buttonGroup) {
 		let $buttonGroup = $(buttonGroup);
@@ -262,4 +279,33 @@ const checkTag = (btn) => {
 	}
 };
 
+// Sort
+
+const removeHide = (classname) => {
+	const elements = document.querySelectorAll(classname);
+	elements.forEach((el) => el.classList.remove("hide"));
+};
+
+const modifyDropdownTitle = (newTitle) => {
+	const dropdownTitle = document.querySelectorAll("#dropdown-title");
+	dropdownTitle[0].textContent = newTitle;
+};
+
+const sort = async (type) => {
+	removeHide(".sort-button");
+	if (type === "Date") {
+		const sortBtn = document.getElementById("sort-by-date");
+		sortBtn.classList.add("hide");
+	}
+	if (type === "Titre") {
+		const sortBtn = document.getElementById("sort-by-name");
+		sortBtn.classList.add("hide");
+	}
+	if (type === "Popularité") {
+		const sortBtn = document.getElementById("sort-by-popularity");
+		sortBtn.classList.add("hide");
+	}
+	modifyDropdownTitle(type);
+};
+sort("Popularité");
 /* ↑ INDEX ↑ */

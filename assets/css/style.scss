@@ -483,6 +483,70 @@ article {
 	}
 }
 
+.dropbtn {
+	background-color: #911c1c;
+	color: white;
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 4.375rem;
+	padding-left: 1.5rem;
+	cursor: pointer;
+	border-radius: 0.3125rem;
+	&:hover {
+		border-radius: 0.3125rem 0.3125rem 0 0;
+	}
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+	width: 10.625rem;
+	height: 4.375rem;
+	&:hover .dropdown-content {
+		display: block;
+	}
+	&-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 10rem;
+		box-shadow: 0rem 0.5rem 1rem 0rem rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		width: 10.625rem;
+		height: 4.375rem;
+		cursor: pointer;
+		a {
+			background-color: #911c1c;
+			color: white;
+			text-decoration: none;
+			display: block;
+			font-size: 1.125rem;
+			font-weight: 700;
+			line-height: 4.375rem;
+			padding-left: 2rem;
+			border-top: 0.0625rem solid white;
+		}
+	}
+}
+
+.hide {
+	display: none !important;
+}
+
+.sort {
+	display: none;
+	@include tablet-breakpoint {
+		display: block;
+		margin-bottom: 3.125rem;
+		&-title {
+			font-size: 1.125rem;
+			color: #000000;
+			font-weight: 700;
+			margin-right: 25px;
+		}
+	}
+}
+
 #photographer-all-medias-container {
 	@include tablet-breakpoint {
 		display: flex;
