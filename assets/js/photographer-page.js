@@ -46,10 +46,62 @@ let mediasOfThisPhotograph = [];
 
 let id = new URLSearchParams(window.location.search).get("id");
 
+const renderMedias = async () => {
+	var data = await getData();
+	const photographer = data.photographers.find((objet) => objet.id == id);
+
+	let allLikes = 0;
+	for (let i = 0; i < mediasOfThisPhotograph.length; i++) {
+		// Photographer total likes
+		allLikes += mediasOfThisPhotograph[i].likes;
+		// Render galery
+		const photographerAllMediasContainer = document.getElementById("photographer-all-medias-container");
+		const photographerMediasContainer = newElement("div", photographerAllMediasContainer, { class: "photographer-medias-container itemSelector2" });
+		photographerMediasContainer.classList.add(mediasOfThisPhotograph[i].tags[0]);
+		const photographerImgContainer = newElement("div", photographerMediasContainer, { class: "photographer-img-container" });
+
+		if (mediasOfThisPhotograph[i].image != null) {
+			const photographerMedias = newElement("img", photographerImgContainer, {
+				id: mediasOfThisPhotograph[i].id,
+				class: "photographer-medias-img",
+				src: "./assets/img/" + photographer.name + "/" + mediasOfThisPhotograph[i].image,
+				alt: mediasOfThisPhotograph[i].title,
+				width: "550px",
+				height: "520px",
+			});
+		} else if (mediasOfThisPhotograph[i].video != null) {
+			let photographerMediasVideoContainer = newElement("video", photographerImgContainer, {
+				id: mediasOfThisPhotograph[i].id,
+				src: "./assets/img/" + photographer.name + "/" + mediasOfThisPhotograph[i].video,
+				type: "video/mp4",
+				width: "100%",
+				height: "auto",
+			});
+		}
+
+		const photographerMediasTextContainer = newElement("div", photographerMediasContainer, { class: "photographer-medias-text-container" });
+		const photographerMediasTitle = newElement("div", photographerMediasTextContainer, { class: "photographer-medias-title" }, mediasOfThisPhotograph[i].title);
+		const photographerMediasDate = newElement("div", photographerMediasTextContainer, { class: "photographer-medias-date hide" }, mediasOfThisPhotograph[i].date);
+		const photographerMediasLikesContainer = newElement("div", photographerMediasTextContainer, {
+			id: "likes-container-" + mediasOfThisPhotograph[i].id,
+			class: "photographer-medias-likes-container",
+			onclick: "like(" + mediasOfThisPhotograph[i].id + ", " + 1 + ")",
+		});
+		const photographerMediasLikesCount = newElement(
+			"div",
+			photographerMediasLikesContainer,
+			{ id: "like-" + mediasOfThisPhotograph[i].id, class: "photographer-medias-likes-count" },
+			mediasOfThisPhotograph[i].likes.toString()
+		);
+		const photographerMediasLikesLogo = newElement("img", photographerMediasLikesContainer, { src: "./assets/img/likes.svg", alt: "likes", class: "photographer-medias-likes-logo" });
+	}
+	const photographerLikes = newValue("about-photographer-likes-count", {}, allLikes);
+};
+
 async function render() {
 	var data = await getData();
 
-	const medias = data.media.filter((objet) => objet.photographerId == id);
+	var medias = data.media.filter((objet) => objet.photographerId == id);
 	const photographer = data.photographers.find((objet) => objet.id == id);
 
 	for (let media of medias) {
@@ -74,51 +126,9 @@ async function render() {
 	}
 	const callToActionModalPhotographerName = newValue("call-to-action-modal-photographer-name", {}, photographer.name);
 	const photographerPrice = newValue("about-photographer-price", {}, photographer.price + "€ / jour");
-	let allLikes = 0;
-	for (let i = 0; i < mediasOfThisPhotograph.length; i++) {
-		// Photographer total likes
-		allLikes += mediasOfThisPhotograph[i].likes;
-		// Render galery
-		const photographerAllMediasContainer = document.getElementById("photographer-all-medias-container");
-		const photographerMediasContainer = newElement("div", photographerAllMediasContainer, { class: "photographer-medias-container itemSelector2" });
-		photographerMediasContainer.classList.add(mediasOfThisPhotograph[i].tags[0]);
-		const photographerImgContainer = newElement("div", photographerMediasContainer, { class: "photographer-img-container" });
 
-		if (mediasOfThisPhotograph[i].image != null) {
-			const photographerMedias = newElement("img", photographerImgContainer, {
-				class: "photographer-medias-img",
-				src: "./assets/img/" + photographer.name + "/" + mediasOfThisPhotograph[i].image,
-				alt: mediasOfThisPhotograph[i].title,
-				width: "550px",
-				height: "520px",
-			});
-		} else if (mediasOfThisPhotograph[i].video != null) {
-			let photographerMediasVideoContainer = newElement("video", photographerImgContainer, {
-				src: "./assets/img/" + photographer.name + "/" + mediasOfThisPhotograph[i].video,
-				type: "video/mp4",
-				width: "100%",
-				height: "auto",
-			});
-		}
-
-		const photographerMediasTextContainer = newElement("div", photographerMediasContainer, { class: "photographer-medias-text-container" });
-		const photographerMediasTitle = newElement("div", photographerMediasTextContainer, { class: "photographer-medias-title" }, mediasOfThisPhotograph[i].title);
-		const photographerMediasDate = newElement("div", photographerMediasTextContainer, { class: "photographer-medias-date hide" }, mediasOfThisPhotograph[i].date);
-		const photographerMediasLikesContainer = newElement("div", photographerMediasTextContainer, {
-			id: "likes-container-" + mediasOfThisPhotograph[i].id,
-			class: "photographer-medias-likes-container",
-			onclick: "like(" + mediasOfThisPhotograph[i].id + ", " + 1 + ")",
-		});
-		const photographerMediasLikesCount = newElement(
-			"div",
-			photographerMediasLikesContainer,
-			{ id: "like-" + mediasOfThisPhotograph[i].id, class: "photographer-medias-likes-count" },
-			mediasOfThisPhotograph[i].likes.toString()
-		);
-		const photographerMediasLikesLogo = newElement("img", photographerMediasLikesContainer, { src: "assets/img/likes.svg", alt: "likes", class: "photographer-medias-likes-logo" });
-	}
-	const photographerLikes = newValue("about-photographer-likes-count", {}, allLikes);
 	filter();
+	sort("Popularité");
 }
 render();
 
@@ -211,6 +221,7 @@ const like = async (id, number) => {
 // Filters
 let filters = [];
 const filter = async () => {
+	await renderMedias();
 	let $grid = $(".grid").isotope({
 		itemSelector: ".itemSelector2",
 		layoutMode: "fitRows",
@@ -240,6 +251,7 @@ const filter = async () => {
 		// filter isotope
 		// group filters together, inclusive
 		$grid.isotope({ filter: filters.join(",") });
+		renderLightbox();
 	});
 
 	function addFilter(filter) {
@@ -291,21 +303,123 @@ const modifyDropdownTitle = (newTitle) => {
 	dropdownTitle[0].textContent = newTitle;
 };
 
+// LIGHTBOX
+
+/* LIGHTBOX FUNCTION */
+const renderLightbox = async () => {
+	var data = await getData();
+
+	const photographer = data.photographers.find((objet) => objet.id == id);
+	const modalContent = document.getElementById("modal-content");
+	// Remove existing Lightbox
+	const mySlides = document.getElementsByClassName("mySlides");
+	while (mySlides.length > 0) {
+		mySlides[0].parentNode.removeChild(mySlides[0]);
+	}
+
+	if (filters.length != 0) {
+		let datadata = "(";
+
+		for (let i = 0; i < filters.length; i++) {
+			let newData = "objet.tags == '" + filters[i].substring(1) + "'";
+			if (i > 0) {
+				datadata = datadata + " || " + newData;
+			}
+			if (i === 0) {
+				datadata = datadata + newData;
+			}
+		}
+
+		datadata = datadata + ")";
+		var medias = mediasOfThisPhotograph.filter((objet) => objet.photographerId == id && eval(datadata));
+		console.log(medias);
+	} else {
+		var medias = mediasOfThisPhotograph.filter((objet) => objet.photographerId == id);
+	}
+
+	for (let item in medias) {
+		// render lightbox
+		const imgOnClick = document.getElementById(medias[item].id);
+		if (imgOnClick != null) {
+			imgOnClick.setAttribute("onclick", "openModal();currentSlide(" + (+[item] + 1) + ")");
+		}
+
+		const mySlides = newElement("div", modalContent, { class: "mySlides" });
+
+		const numberText = newElement("div", mySlides, { class: "numbertext" }, +[item] + 1 + " / " + medias.length);
+		if (medias[item].image != null) {
+			const photographerMedias = newElement("img", mySlides, {
+				class: "modal-img",
+				src: "./assets/img/" + photographer.name + "/" + medias[item].image,
+				alt: medias[item].title,
+			});
+			const photographerMediasTitle = newElement("div", mySlides, { class: "caption-container" }, medias[item].title);
+		} else if (medias[item].video != null) {
+			let photographerMediasVideoContainer = newElement("video", mySlides, { class: "modal-img", width: "100%", height: "auto", controls: "true" });
+			const photographerMediasVideo = newElement("source", photographerMediasVideoContainer, {
+				src: "./assets/img/" + photographer.name + "/" + medias[item].video,
+				type: "video/mp4",
+			});
+			const photographerMediasVideoTitle = newElement("div", mySlides, { class: "caption-container" }, medias[item].title);
+		}
+	}
+	const prev = newElement("a", modalContent, { class: "prev", onclick: "plusSlides(-1)" }, "<");
+	const next = newElement("a", modalContent, { class: "next", onclick: "plusSlides(1)" }, ">");
+};
+
 const sort = async (type) => {
 	removeHide(".sort-button");
 	if (type === "Date") {
+		mediasOfThisPhotograph.sort((a, b) => b.date.localeCompare(a.date));
 		const sortBtn = document.getElementById("sort-by-date");
 		sortBtn.classList.add("hide");
 	}
 	if (type === "Titre") {
+		mediasOfThisPhotograph.sort((a, b) => a.title.localeCompare(b.title));
 		const sortBtn = document.getElementById("sort-by-name");
 		sortBtn.classList.add("hide");
 	}
 	if (type === "Popularité") {
+		mediasOfThisPhotograph.sort((a, b) => parseFloat(b.likes) - parseFloat(a.likes));
 		const sortBtn = document.getElementById("sort-by-popularity");
 		sortBtn.classList.add("hide");
 	}
 	modifyDropdownTitle(type);
+	renderLightbox();
 };
-sort("Popularité");
+
+// Open the Modal
+function openModal() {
+	document.getElementById("myModal").style.display = "block";
+}
+
+// Close the Modal
+function closeModal() {
+	document.getElementById("myModal").style.display = "none";
+}
+let slideIndex;
+// Next/previous controls
+function plusSlides(n) {
+	showSlides((slideIndex += n));
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+	showSlides((slideIndex = n));
+}
+
+function showSlides(n) {
+	let i;
+	let slides = document.getElementsByClassName("mySlides");
+	if (n > slides.length) {
+		slideIndex = 1;
+	}
+	if (n < 1) {
+		slideIndex = slides.length;
+	}
+	for (i = 0; i < slides.length; i++) {
+		slides[i].style.display = "none";
+	}
+	slides[slideIndex - 1].style.display = "block";
+}
 /* ↑ INDEX ↑ */
