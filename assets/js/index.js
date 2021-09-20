@@ -45,7 +45,7 @@ const renderPhotographersList = async () => {
 		const photographerCardTagline = newElement("p", photographerCardTextContainer, { class: "card-tagline" }, photographers[i].tagline);
 		const photographerCardPrice = newElement("p", photographerCardTextContainer, { class: "card-price" }, photographers[i].price + "€/jour");
 
-		const photographerCardTagsContainer = newElement("ul", photographerCard, { class: "photographer-card-tags-container" });
+		const photographerCardTagsContainer = newElement("ul", photographerCard, { class: "photographer-card-tags-container filters" });
 		for (let item in photographers[i].tags) {
 			photographerCard.classList.add(photographers[i].tags[item]);
 			const photographerCardTags = newElement(
