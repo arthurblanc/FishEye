@@ -87,7 +87,11 @@
 			<div class="sort">
 				<span class="sort-title">Trier par</span>
 				<div class="dropdown">
-					<div id="dropdown-title" class="dropbtn"></div>
+					<div class="dropbtn">
+						<div id="dropdown-title"></div>
+						<img src="./assets/img/dropdown.svg" alt="dropdown arrow" class="dropdown-arrow" />
+					</div>
+
 					<div class="dropdown-content button-group sort-by-button-group">
 						<a id="sort-by-popularity" class="sort-button button is-checked" data-sort-value="popularity" onclick="sort('Popularité')">Popularité</a>
 						<a id="sort-by-date" class="sort-button button" data-sort-value="date" onclick="sort('Date')">Date</a>
@@ -105,6 +109,12 @@
 			</div>
 		</main>
 		<script src="./assets/js/main.js"></script>
-		<script src="./assets/js/photographer-page.js"></script>
+
+		<script src="./assets/js/functions/inputValidation.js"></script>
+		<script src="./assets/js/functions/likes.js"></script>
+
+		<script src="./assets/js/functions/modals.js"></script>
+
+		<script type="module" src="./assets/js/photographer-page.js"></script>
 	</body>
 </html>
