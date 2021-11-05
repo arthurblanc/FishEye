@@ -1,4 +1,4 @@
-/* Requête fetch pour récuperer la liste des articles et leurs détails */
+// Async function to fetch data in a json
 const getData = async () => {
 	const url = "./assets/json/FishEyeData.json";
 	const response = await fetch(url);

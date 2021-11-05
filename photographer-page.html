@@ -8,112 +8,165 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon/favicon-16x16.png" />
 		<link rel="manifest" href="./assets/img/favicon/site.webmanifest" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 		<link rel="stylesheet" href="./assets/css/style.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 	</head>
 
-	<body>
-		<header class="header-photographer-page">
-			<a href="./"><img alt="Fisheye Home page" src="./assets/img/logo.svg" class="logo logo-photographer-page" /></a>
+	<body class="mx-auto p-0">
+		<header class="container mt-5 mb-md-5 header" role="banner">
+			<a class="home-link d-block" href="./" tabindex="1" aria-label="Home page">
+				<img alt="Logo de Fisheye - Home page" src="./assets/img/logo.svg" class="mb-4 mb-md-0 logo" />
+			</a>
 		</header>
 		<main id="main" class="photographer-main-container">
-			<div id="about-photographer">
-				<div id="about-photographer-img-container">
-					<img id="about-photographer-img" />
-					<button id="call-to-action-button">Contactez-moi</button>
-				</div>
-				<div>
-					<h1 id="about-photographer-name"></h1>
-					<div>
-						<p id="about-photographer-city"></p>
-						<p id="about-photographer-tagline"></p>
-					</div>
-					<div id="about-photographer-tags-container" class="filters"></div>
-				</div>
-				<div id="about-photographer-likes-price-container">
-					<div id="about-photographer-likes-container">
-						<div id="about-photographer-likes-count"></div>
-						<img src="./assets/img/likes.svg" alt="photographer likes" id="about-photographer-likes-logo" />
-					</div>
-					<p id="about-photographer-price"></p>
-				</div>
-			</div>
-
-			<div id="call-to-action-modal" class="call-to-action-modal">
-				<!-- Modal content -->
-				<div class="call-to-action-modal-content">
-					<div class="modal-body">
-						<div class="call-to-action-modal-title">
-							Contactez-moi <br />
-							<span id="call-to-action-modal-photographer-name"></span>
+			<section id="about-photographer" class="container mb-5 mb-md-3 px-md-4 py-md-5 rounded">
+				<div class="row">
+					<div class="col-8 col-lg-6">
+						<h1 id="about-photographer-name"></h1>
+						<div>
+							<p id="about-photographer-city" class="py-1"></p>
+							<p id="about-photographer-tagline" class="pt-1 pb-3"></p>
 						</div>
-						<span class="close1">&times;</span>
-						<form id="form" name="form" action="" method="get">
-							<div class="formData">
-								<label for="first">Prénom</label><br />
-								<input class="text-control" type="text" id="first" name="first" /><br />
-							</div>
-							<div id="error-first" class="error-form">Veuillez entrer 2 caractères ou plus pour le champ du Prénom.</div>
-							<div class="formData">
-								<label for="last">Nom</label><br />
-								<input class="text-control" type="text" id="last" name="last" /><br />
-							</div>
-							<div id="error-last" class="error-form">Veuillez entrer 2 caractères ou plus pour le champ du Nom.</div>
-							<div class="formData">
-								<label for="email">Email</label><br />
-								<input class="text-control" type="email" id="email" name="email" /><br />
-							</div>
-							<div id="error-email" class="error-form">Vous devez entrer votre adresse email.</div>
-							<div class="formData">
-								<label for="message">Votre message</label><br />
-								<textarea class="text-control text-control-message" type="text" id="message" name="message" rows="5"></textarea>
-							</div>
-							<div id="error-message" class="error-form">Veuillez entrer votre message (minimum 20 caractères, pas de caractères spéciaux)</div>
-							<input class="btn-submit button" type="submit" value="Envoyer" />
-						</form>
+						<div id="about-photographer-tags-container" class="filters"></div>
+					</div>
+					<div id="about-photographer-img-container" class="col-4 col-lg-6 d-md-flex flex-md-wrap justify-content-md-center justify-content-lg-between">
+						<!-- Button trigger modal -->
+						<button
+							id="call-to-action-button"
+							type="button"
+							tabindex="1"
+							class="mt-md-3 mx-auto m-lg-0 px-4 py-2 p-md-2 py-lg-3 order-md-2 rounded border-0 btn btn-danger"
+							data-bs-toggle="modal"
+							data-bs-target="#exampleModal"
+						>
+							Contactez-moi
+						</button>
+						<img id="about-photographer-img" />
+					</div>
+					<div id="about-photographer-likes-price-container" class="d-none d-md-flex fixed-bottom rounded-top px-md-4 py-md-3">
+						<div id="about-photographer-likes-container" class="me-5 d-flex align-items-center">
+							<div id="about-photographer-likes-count" class="me-1"></div>
+							<img src="./assets/img/likes.svg" alt="" aria-hidden="true" id="about-photographer-likes-logo" />
+						</div>
+						<p id="about-photographer-price"></p>
+					</div>
+				</div>
+			</section>
 
-						<div id="confirmation">
-							<h1>Merci ! Votre message a été envoyé.</h1>
-							<button id="confirmation-btn-close" class="btn-close">Fermer</button>
+			<section class="mb-5 container">
+				<div class="d-none d-md-block mb-md-4">
+					<span class="me-md-4 sort-title">Trier par</span>
+					<div class="dropdown d-inline-block">
+						<button class="btn btn-danger ps-3 dropdown-toggle border-0 d-flex position-relative dropbtn" type="button" tabindex="1" data-bs-toggle="dropdown" aria-expanded="false">
+							<div id="dropdown-title"></div>
+							<img src="./assets/img/dropdown.svg" alt="" class="ms-4 dropdown-arrow" aria-hidden="true" />
+						</button>
+						<ul class="p-0 w-100 border-0 dropdown-menu button-group sort-by-button-group" aria-labelledby="dropdownMenu2">
+							<li>
+								<button
+									id="sort-by-popularity"
+									class="btn btn-danger mx-auto py-0 px-3 border-0 sort-button is-checked"
+									tabindex="1"
+									data-sort-value="popularity"
+									onclick="sort('Popularité')"
+									type="button"
+								>
+									<div class="sort-name">Popularité</div>
+								</button>
+							</li>
+							<li>
+								<button id="sort-by-date" class="btn btn-danger mx-auto py-0 px-3 border-0 sort-button button" tabindex="1" data-sort-value="date" onclick="sort('Date')" type="button">
+									<div class="sort-name">Date</div>
+								</button>
+							</li>
+							<li>
+								<button id="sort-by-name" class="btn btn-danger mx-auto py-0 px-3 border-0 sort-button button" tabindex="1" data-sort-value="title" onclick="sort('Titre')" type="button">
+									<div class="sort-name">Titre</div>
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="photographer-all-medias-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mb-5 justify-content-md-between grid"></div>
+			</section>
+
+			<!-- Form Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="border-bottom-0 py-3 px-4 modal-header">
+							<div class="call-to-action-modal-title" id="formTitle">
+								Contactez-moi <br />
+								<span id="call-to-action-modal-photographer-name"></span>
+							</div>
+							<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="pt-3 pb-5 px-4 modal-body">
+							<form id="form" name="form" class="row g-3 needs-validation" action="" method="get" novalidate>
+								<div role="group" aria-labelledby="coordonnees">
+									<p id="coordonnes" class="visually-hidden">Vos coordonnées</p>
+									<div class="col-12">
+										<label for="first" class="form-label">Prénom</label>
+										<input type="text" class="form-control" name="first" id="first" pattern="^([A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ ,.'-]*){2}" required aria-required="true" />
+										<div class="invalid-feedback">Veuillez entrer 2 caractères ou plus.</div>
+									</div>
+									<div class="col-12">
+										<label for="last" class="form-label">Nom</label>
+										<input type="text" class="form-control" name="last" id="last" pattern="^([A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ ,.'-]*){2}" required aria-required="true" />
+										<div class="invalid-feedback">Veuillez entrer 2 caractères ou plus.</div>
+									</div>
+									<div class="col-12">
+										<label for="email" class="form-label">Email</label>
+										<input
+											type="email"
+											class="form-control text-control"
+											name="email"
+											id="email"
+											pattern="(?=^.{5,255}$)^([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})"
+											required
+											aria-required="true"
+										/>
+										<div class="invalid-feedback">Vous devez entrer votre adresse email.</div>
+									</div>
+								</div>
+								<div class="col-12">
+									<label for="message" class="form-label">Votre message</label>
+									<textarea type="text" class="form-control" id="message" name="message" rows="5" minlength="20" required aria-required="true"></textarea>
+									<div class="invalid-feedback">Le message doit contenir au minimum 20 caractères.</div>
+								</div>
+								<div class="col-12">
+									<button class="btn btn-danger mt-4 rounded border-0 py-3 px-4 btn-submit button" type="submit">Envoyer</button>
+								</div>
+							</form>
+
+							<div id="confirmation" class="m-auto">
+								<h1>Merci ! Votre message a été envoyé.</h1>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="sort">
-				<span class="sort-title">Trier par</span>
-				<div class="dropdown">
-					<div class="dropbtn">
-						<div id="dropdown-title"></div>
-						<img src="./assets/img/dropdown.svg" alt="dropdown arrow" class="dropdown-arrow" />
+			<!-- Lightbox Modal -->
+			<div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="" aria-hidden="true">
+				<div class="modal-dialog modal-xl modal-dialog-centered">
+					<div id="modal-content" class="modal-lightbox">
+						<button type="button" class="btn-close modal-lightbox-btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-
-					<div class="dropdown-content button-group sort-by-button-group">
-						<a id="sort-by-popularity" class="sort-button button is-checked" data-sort-value="popularity" onclick="sort('Popularité')">Popularité</a>
-						<a id="sort-by-date" class="sort-button button" data-sort-value="date" onclick="sort('Date')">Date</a>
-						<a id="sort-by-name" class="sort-button button" data-sort-value="title" onclick="sort('Titre')">Titre</a>
-					</div>
-				</div>
-			</div>
-
-			<div id="photographer-all-medias-container" class="grid"></div>
-
-			<div id="myModal" class="modal">
-				<div id="modal-content" class="modal-content">
-					<span class="close cursor" onclick="closeModal()">&times;</span>
 				</div>
 			</div>
 		</main>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
 		<script src="./assets/js/main.js"></script>
 
 		<script src="./assets/js/functions/inputValidation.js"></script>
 		<script src="./assets/js/functions/likes.js"></script>
-
-		<script src="./assets/js/functions/modals.js"></script>
 
 		<script type="module" src="./assets/js/photographer-page.js"></script>
 	</body>

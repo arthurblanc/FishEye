@@ -1,5 +1,4 @@
-/* ↓ FUNCTIONS ↓ */
-/* Fonction permettant de creer des élements avec leurs attributs et contenus */
+// Function to create element with attributes and contents
 const newElement = (type, parent, attributes, ...contents) => {
 	const element = document.createElement(type);
 	if (parent) {
@@ -18,7 +17,7 @@ const newElement = (type, parent, attributes, ...contents) => {
 	return element;
 };
 
-/* Fonction permettant d'ajouter des attributs et contenus */
+// Function to update attributes and contents of a element
 const newValue = (id, attributes, textContent) => {
 	const element = document.getElementById(id);
 	for (key in attributes) {

@@ -1,3 +1,5 @@
+// Define Photographer class
+
 class Photographer {
 	constructor(data) {
 		this.name = data.name;

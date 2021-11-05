@@ -1,24 +1,32 @@
 import { renderAboutPhotograph } from "./render/renderAboutPhotograph.js";
 import { renderMedias } from "./render/renderMedias.js";
-import { renderLightbox, openModal, closeModal, plusSlides, currentSlide } from "./render/renderLightbox.js";
+import { renderLightbox, plusSlides, currentSlide } from "./render/renderLightbox.js";
 import { filter, checkTag } from "./functions/filters.js";
 import { sort } from "./functions/sorting.js";
 import { getData } from "./functions/getData.js";
 import { createMedia } from "./factory/mediaFactory.js";
 
+// Create mediasOfThisPhotograph array
 let mediasOfThisPhotograph = [];
 
+// Get data
 const data = await getData();
 
+// Get photographer id
 let id = new URLSearchParams(window.location.search).get("id");
+// Filter medias with photographer id
 const medias = data.media.filter((objet) => objet.photographerId == id);
+// Filter photographer with photographer id
 const photographer = data.photographers.find((objet) => objet.id == id);
 
+// Push data in mediasOfThisPhotograph array
 for (let media of medias) {
 	mediasOfThisPhotograph.push(createMedia(media));
 }
 
+// Render About Photograph section
 renderAboutPhotograph();
+// Init filter and render medias
 filter(
 	renderMedias(),
 	".grid",
@@ -36,10 +44,10 @@ filter(
 		title: true,
 	}
 );
+// Default popularity sort
 sort("Popularité");
 
-window.openModal = openModal;
-window.closeModal = closeModal;
+// Extend function to navigation window
 window.plusSlides = plusSlides;
 window.currentSlide = currentSlide;
 window.sort = sort;
