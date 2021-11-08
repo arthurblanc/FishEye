@@ -32,7 +32,7 @@ const renderLightbox = async () => {
 	// Add filtered picture in lightbox
 	for (let item in medias) {
 		// Add function to open the modal on the right picture
-		const imgOnClick = document.getElementById(medias[item].id);
+		const imgOnClick = document.getElementById("media-" + medias[item].id);
 		if (imgOnClick != null) {
 			imgOnClick.setAttribute("onclick", "currentSlide(" + (+[item] + 1) + ")");
 		}
@@ -58,10 +58,10 @@ const renderLightbox = async () => {
 	}
 
 	// Add prev and next button
-	const carouselControlPrev = newElement("button", modalContent, { id: "carousel-control-prev", class: "carousel-control-prev", type: "button", onclick: "plusSlides(-1)" });
+	const carouselControlPrev = newElement("button", modalContent, { id: "carousel-control-prev", class: "carousel-control-prev", type: "button", onclick: "plusSlides(-1)", "aria-label": "Previous image" });
 	const carouselControlPrevIcon = newElement("span", carouselControlPrev, { class: "carousel-control-prev-icon", "aria-hidden": "true" });
 	const carouselControlPrevSR = newElement("span", carouselControlPrev, { class: "visually-hidden" }, "Previous");
-	const carouselControlNext = newElement("button", modalContent, { id: "carousel-control-next", class: "carousel-control-next", type: "button", onclick: "plusSlides(1)" });
+	const carouselControlNext = newElement("button", modalContent, { id: "carousel-control-next", class: "carousel-control-next", type: "button", onclick: "plusSlides(1)", "aria-label": "Next image" });
 	const carouselControlNextIcon = newElement("span", carouselControlNext, { class: "carousel-control-next-icon", "aria-hidden": "true" });
 	const carouselControlNextSR = newElement("span", carouselControlNext, { class: "visually-hidden" }, "next");
 };

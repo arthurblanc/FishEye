@@ -314,7 +314,7 @@ h6 {
 }
 
 #about-photographer-tagline {
-  color: #757575;
+  color: #545454;
 }
 
 @media screen and (min-width: 768px) {
@@ -519,6 +519,7 @@ h6 {
 .call-to-action-modal-title {
   display: block;
   font-size: 2rem;
+  color: #312e2e;
 }
 
 .form-label {

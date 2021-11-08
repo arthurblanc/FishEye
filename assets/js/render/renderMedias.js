@@ -11,23 +11,22 @@ const renderMedias = async () => {
 
 		// Render gallery
 		const photographerAllMediasContainer = $("#photographer-all-medias-container")[0];
-		const photographerMediasContainer = newElement("article", photographerAllMediasContainer, {
-			id: "media-container" + mediasOfThisPhotograph[i].id,
+		const photographerMediasContainer = newElement("div", photographerAllMediasContainer, {
 			class: "card border-0 px-md-5 mb-2 mb-md-4 bg-transparent photographer-medias-container itemSelector2",
 		});
 		photographerMediasContainer.classList.add(mediasOfThisPhotograph[i].tags[0]);
 
 		// Add medias in gallery
 		const photographerImgLink = newElement("a", photographerMediasContainer, {
-			id: mediasOfThisPhotograph[i].id,
+			id: "media-" + mediasOfThisPhotograph[i].id,
 			"data-bs-toggle": "modal",
-			"data-bs-target": "#myModal",
+			"data-bs-target": "#lightboxModal",
 			class: "rounded photographer-img-link",
+			"aria-label": mediasOfThisPhotograph[i].title + ", closeup view",
 			href: "#",
 		});
 		const photographerImgContainer = newElement("figure", photographerImgLink, { class: "mb-0 photographer-img-container" });
 		const photographerMediasTextContainer = newElement("figcaption", photographerMediasContainer, {
-			id: "figcaption-" + mediasOfThisPhotograph[i].id,
 			class: "d-flex mt-1 pb-2 position-relative photographer-medias-text-container",
 		});
 		if (mediasOfThisPhotograph[i].image != null) {
@@ -49,7 +48,7 @@ const renderMedias = async () => {
 		}
 
 		// Add likes button
-		const photographerMediasTitle = newElement("div", photographerMediasTextContainer, { class: "col-10 photographer-medias-title" }, mediasOfThisPhotograph[i].title);
+		const photographerMediasTitle = newElement("div", photographerMediasTextContainer, { class: "col-9 photographer-medias-title" }, mediasOfThisPhotograph[i].title);
 		const photographerMediasDate = newElement("div", photographerMediasTextContainer, { class: " photographer-medias-date hide" }, mediasOfThisPhotograph[i].date);
 		const photographerMediasLikesContainer = newElement("button", photographerMediasTextContainer, {
 			id: "likes-container-" + mediasOfThisPhotograph[i].id,

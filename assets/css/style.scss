@@ -312,7 +312,7 @@ h6 {
 		}
 	}
 	&-tagline {
-		color: #757575;
+		color: #545454;
 		@include tablet-breakpoint {
 			font-size: 1.125rem;
 		}
@@ -500,6 +500,7 @@ h6 {
 		&-title {
 			display: block;
 			font-size: 2rem;
+			color: #312e2e;
 		}
 	}
 }
