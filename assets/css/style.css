@@ -127,7 +127,7 @@ h6 {
 }
 
 .nav-filters {
-  max-width: 16.5rem;
+  max-width: 18rem;
 }
 
 @media screen and (min-width: 992px) {
@@ -138,10 +138,10 @@ h6 {
 }
 
 .tag {
-  border: 0.03125rem solid #c4c4c4;
+  border: 0.01rem solid #545454;
   background: #fff;
   color: #901c1c;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 
 .btn.is-checked {
@@ -184,7 +184,14 @@ h6 {
 @media screen and (min-width: 992px) {
   .our-photographer {
     position: absolute;
-    top: -9.5rem;
+    top: -10rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .our-photographer {
+    position: absolute;
+    top: -9rem;
   }
 }
 
@@ -217,8 +224,8 @@ h6 {
   height: 12.5rem;
   -o-object-fit: cover;
      object-fit: cover;
-  -webkit-box-shadow: 0rem 0.25rem 0.75rem 0rem #00000040;
-          box-shadow: 0rem 0.25rem 0.75rem 0rem #00000040;
+  -webkit-box-shadow: 0rem 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
+          box-shadow: 0rem 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
 }
 
 .photographer-card-name {
@@ -235,7 +242,7 @@ h6 {
 }
 
 .card-price {
-  color: #757575;
+  color: #545454;
   font-size: 0.8rem;
 }
 
@@ -250,7 +257,7 @@ h6 {
 /*---------------------------------------- */
 @media screen and (min-width: 768px) {
   #about-photographer {
-    background: #fafafa;
+    background: #f2f2f2;
   }
 }
 
@@ -347,14 +354,18 @@ h6 {
           filter: grayscale(100%) brightness(0);
 }
 
+.photographer-tags-container {
+  width: 90vw;
+}
+
 .dropbtn {
   width: 10.625rem;
-  height: 4.375rem;
-  background-color: #911c1c;
+  height: 4rem;
+  background-color: #901c1c;
   color: white;
   font-size: 1.125rem;
   font-weight: 700;
-  line-height: 3.5rem;
+  line-height: 3rem;
 }
 
 .dropbtn.show {
@@ -363,12 +374,13 @@ h6 {
 
 .btn.btn-danger.dropdown-toggle.dropbtn.show .dropdown-arrow {
   -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 
 .dropdown-menu {
   margin-top: -4px !important;
-  background-color: #911c1c;
+  background-color: #901c1c;
 }
 
 .dropdown-menu .show {
@@ -380,9 +392,10 @@ h6 {
   position: absolute;
   right: 1.5rem;
   width: 1rem;
-  height: 3.375rem;
+  height: 3rem;
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
   transition: -webkit-transform 0.2s ease-in-out;
+  -o-transition: transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
@@ -403,14 +416,14 @@ h6 {
 .sort-button {
   width: 10.625rem;
   width: 100%;
-  height: 4.375rem;
-  background-color: #911c1c;
+  height: 4rem;
+  border-radius: 0;
+  background-color: #901c1c;
   color: white;
   font-size: 1.125rem;
   font-weight: 700;
   text-align: left;
   text-decoration: none;
-  border-radius: 0;
 }
 
 .sort-by-button-group li:last-child button {
@@ -421,7 +434,7 @@ h6 {
 .sort-name {
   display: block;
   border-top: 0.1rem solid white;
-  line-height: 4.375rem;
+  line-height: 4rem;
 }
 
 .photographer-img-container a:focus {
@@ -474,6 +487,10 @@ h6 {
           box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
 }
 
+.photographer-medias-likes-container:hover {
+  color: #bb2d3b;
+}
+
 .photographer-medias-likes-logo {
   width: 0.8rem;
   opacity: 0.5;
@@ -505,7 +522,7 @@ h6 {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  background: #911c1c;
+  background: #901c1c;
   font-size: 1.25rem;
   font-weight: bold;
 }
@@ -516,10 +533,14 @@ h6 {
   }
 }
 
+#call-to-action-button:hover {
+  background: #bb2d3b;
+}
+
 .call-to-action-modal-title {
   display: block;
+  color: #000;
   font-size: 2rem;
-  color: #312e2e;
 }
 
 .form-label {
@@ -531,7 +552,7 @@ h6 {
 }
 
 .btn-submit {
-  background: #fe142f;
+  background: #901c1c;
   color: #fff;
   font-weight: 700;
 }
@@ -579,7 +600,7 @@ h6 {
 
 .modal-content {
   background: #db8876;
-  color: #312e2e;
+  color: #000;
 }
 
 .modal-header {
@@ -692,6 +713,7 @@ h6 {
   position: absolute;
   top: 0;
   color: #f2f2f2;
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .caption-container {
@@ -705,4 +727,3 @@ h6 {
     font-size: 1.5rem;
   }
 }
-/*# sourceMappingURL=style.css.map */

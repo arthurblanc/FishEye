@@ -1,14 +1,14 @@
 // Define Media class
 class Media {
 	constructor(data) {
-		this.id = data.id;
-		this.photographerId = data.photographerId;
-		this.title = data.title;
-		this.description = data.description;
-		this.tags = data.tags;
-		this.likes = data.likes;
-		this.date = data.date;
-		this.price = data.price;
+		this._id = data.id;
+		this._photographerId = data.photographerId;
+		this._title = data.title;
+		this._description = data.description;
+		this._tags = data.tags;
+		this._likes = data.likes;
+		this._date = data.date;
+		this._price = data.price;
 	}
 }
 
@@ -16,7 +16,7 @@ class Media {
 class Image extends Media {
 	constructor(data) {
 		super(data);
-		this.image = data.image;
+		this._image = data.image;
 	}
 }
 
@@ -24,7 +24,7 @@ class Image extends Media {
 class Video extends Media {
 	constructor(data) {
 		super(data);
-		this.video = data.video;
+		this._video = data.video;
 	}
 }
 

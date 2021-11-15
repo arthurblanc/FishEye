@@ -1,4 +1,4 @@
-/* TO CONTTENT BTN*/
+// TO CONTENT BTN
 const toContentBtn = $("#to-content-btn")[0];
 
 // Function to show/hide to-content-btn when scrolling

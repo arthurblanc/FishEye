@@ -1,7 +1,8 @@
-// Async function to load renderLightbox function
-const loadRenderLightbox = async () => {
-	const { renderLightbox } = await import("../render/renderLightbox.js");
-	renderLightbox();
+// Async function to load Lightbox function
+const loadLightbox = async () => {
+	const { PhotographerPages } = await import("../photographer-page.js");
+	const photographerPages = new PhotographerPages();
+	photographerPages.lightbox();
 };
 
 // Create filters array
@@ -30,9 +31,9 @@ const filter = async (waitForFunction, grid, itemSelector, layoutMode, sortBy, g
 		// group filters together, inclusive
 		$grid.isotope({ filter: filters.join(",") });
 
-		// renderLightbox on photographer-page
-		if (document.location.pathname === "/photographer-page.html") {
-			loadRenderLightbox();
+		// loadLightbox on photographer-page
+		if (window.location.toString().includes("/photographer-page.html")) {
+			loadLightbox();
 		}
 	});
 
