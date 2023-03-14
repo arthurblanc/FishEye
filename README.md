@@ -116,7 +116,7 @@ This is a project carried out as part of the Front-End JavaScript React Develope
 
 Junior developer at a consulting firm specializing in web development and mobile applications.
 
-The company wants to embark on a new project with a new client: FishEye, a website allowing independent photographers to present their work, with a priority on accessibility to allow the site to be used by as many people as possible.
+The company wants to embark on a new project with a new client: a website allowing independent photographers to present their work, with a priority on accessibility to allow the site to be used by as many people as possible.
 
 My role was to develop the entire front-end aspect of the site from approved mock-ups by the designer and to emphasize accessibility.
 
